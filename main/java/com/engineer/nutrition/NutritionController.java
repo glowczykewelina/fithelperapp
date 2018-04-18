@@ -21,7 +21,7 @@ public class NutritionController {
     }
 
     @PostMapping
-    List<Nutrition> proposeNutrition(@RequestBody Data data) {
+    List<NutritionDTO> proposeNutrition(@RequestBody Data data) {
         return nutritionService.proposeNutrition(data);
     }
 

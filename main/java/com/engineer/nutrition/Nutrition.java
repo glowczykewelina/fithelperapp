@@ -1,13 +1,24 @@
 package com.engineer.nutrition;
 
+import javax.persistence.*;
+
+@Entity
 public class Nutrition {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column
     private int calory;
 
+    @Column
     private int protein;
 
+    @Column
     private int fat;
 
+    @Column
     private int carbohydrote;
 
     public Nutrition() {

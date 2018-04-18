@@ -9,8 +9,16 @@ import java.util.List;
 @Service
 public class NutritionServiceImpl implements NutritionService {
 
+    private NutritionMapper nutritionMapper;
+    private  NutritionRepository nutritionRepository;
+
+    public NutritionServiceImpl(NutritionMapper nutritionMapper, NutritionRepository nutritionRepository) {
+        this.nutritionMapper = nutritionMapper;
+        this.nutritionRepository = nutritionRepository;
+    }
+
     @Override
-    public List<Nutrition> proposeNutrition(Data data) {
+    public List<NutritionDTO> proposeNutrition(Data data) {
 
         List <Nutrition> nutri = new ArrayList<Nutrition>();
         Nutrition nutrition = new Nutrition();
@@ -90,8 +98,9 @@ public class NutritionServiceImpl implements NutritionService {
         protein = (int) ((calory*0.12)/4);
         nutrition.setProtein(protein);
 
+
         nutri.add(nutrition);
-        return nutri;
+        return nutritionMapper.toNutritionDTO(nutritionRepository.save(nutri));
 
 
     }
