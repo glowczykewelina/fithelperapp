@@ -27,9 +27,9 @@ public class MealServiceImpl implements MealService {
         List<Meal> meals = new ArrayList<>();
         Meal meal = new Meal();
         String typeMeal = dataMeal.getType();
-        int quantity = dataMeal.getQuantity_of_meals();
+        int mealNumber = dataMeal.getNumber_of_meals();
         meal.setTypeMeal(typeMeal);
-        meal.setQuantityMeal(quantity);
+        meal.setNumberMeal(mealNumber);
         meal.setName(name);
 
         Nutrition nutrition = nutritionRepository.findOneByName(name);
@@ -38,7 +38,7 @@ public class MealServiceImpl implements MealService {
         int userFat = nutrition.getFat();
         int userCarbo = nutrition.getCarbohydrote();
 
-        if (quantity==3) {
+        if (mealNumber==3) {
             if (typeMeal.equals("sniadanie")){
                 meal.setMeal_cal((int) (userCal*0.35));
                 meal.setMeal_protein((int) (userProtein*0.35));
@@ -55,7 +55,7 @@ public class MealServiceImpl implements MealService {
                 meal.setMeal_carbo((int) (userCarbo*0.25));
                 meal.setMeal_fat((int) (userFat*0.25));
             }
-        }else if (quantity==4) {
+        }else if (mealNumber==4) {
             if (typeMeal.equals("sniadanie")){
                 meal.setMeal_cal((int) (userCal*0.30));
                 meal.setMeal_protein((int) (userProtein*0.30));
@@ -77,7 +77,7 @@ public class MealServiceImpl implements MealService {
                 meal.setMeal_carbo((int) (userCarbo*0.25));
                 meal.setMeal_fat((int) (userFat*0.25));
             }
-        }else if (quantity==5) {
+        }else if (mealNumber==5) {
             if (typeMeal.equals("sniadanie")){
                 meal.setMeal_cal((int) (userCal*0.30));
                 meal.setMeal_protein((int) (userProtein*0.30));

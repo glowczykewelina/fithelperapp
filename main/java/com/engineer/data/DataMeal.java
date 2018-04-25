@@ -4,7 +4,7 @@ public class DataMeal {
 
     private String type;
 
-    private int quantity_of_meals;
+    private int number_of_meals;
 
     public DataMeal() {
 
@@ -18,11 +18,11 @@ public class DataMeal {
         this.type = type;
     }
 
-    public int getQuantity_of_meals() {
-        return quantity_of_meals;
+    public int getNumber_of_meals() {
+        return number_of_meals;
     }
 
-    public void setQuantity_of_meals(int quantity_of_meals) {
-        this.quantity_of_meals = quantity_of_meals;
+    public void setNumber_of_meals(int number_of_meals) {
+        this.number_of_meals = number_of_meals;
     }
 }

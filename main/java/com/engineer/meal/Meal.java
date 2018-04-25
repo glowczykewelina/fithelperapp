@@ -18,7 +18,7 @@ public class Meal {
     private String typeMeal;
 
     @Column
-    private int quantityMeal;
+    private int numberMeal;
 
     @Column
     private int meal_cal;
@@ -53,12 +53,12 @@ public class Meal {
         this.typeMeal = typeMeal;
     }
 
-    public int getQuantityMeal() {
-        return quantityMeal;
+    public int getNumberMeal() {
+        return numberMeal;
     }
 
-    public void setQuantityMeal(int quantityMeal) {
-        this.quantityMeal = quantityMeal;
+    public void setNumberMeal(int numberMeal) {
+        this.numberMeal = numberMeal;
     }
 
     public int getMeal_cal() {
