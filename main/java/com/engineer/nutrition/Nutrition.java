@@ -1,6 +1,9 @@
 package com.engineer.nutrition;
 
+import com.engineer.meal.Meal;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Nutrition {
@@ -8,6 +11,9 @@ public class Nutrition {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column
+    private String name;
 
     @Column
     private int calory;
@@ -20,6 +26,7 @@ public class Nutrition {
 
     @Column
     private int carbohydrote;
+
 
     public Nutrition() {
 
@@ -55,5 +62,21 @@ public class Nutrition {
 
     public void setCarbohydrote(int carbohydrote) {
         this.carbohydrote = carbohydrote;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

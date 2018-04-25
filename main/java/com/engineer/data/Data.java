@@ -2,6 +2,8 @@ package com.engineer.data;
 
 public class Data {
 
+    private String name;
+
     private String gender;
 
     private Short age;
@@ -44,5 +46,13 @@ public class Data {
 
     public void setActivity(String activity) {
         this.activity = activity;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

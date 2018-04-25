@@ -3,10 +3,7 @@ package com.engineer.nutrition;
 
 import com.engineer.data.Data;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +21,12 @@ public class NutritionController {
     List<NutritionDTO> proposeNutrition(@RequestBody Data data) {
         return nutritionService.proposeNutrition(data);
     }
+
+    @PostMapping("/{name}")
+    public NutritionDTO findOneNutrition (@PathVariable String name) {
+        return nutritionService.findOneNutrition(name);
+    }
+
 
 
 }

@@ -2,6 +2,8 @@ package com.engineer.nutrition;
 
 public class NutritionDTO {
 
+
+
     private int calory;
 
     private int protein;
@@ -41,4 +43,5 @@ public class NutritionDTO {
     public void setCarbohydrote(int carbohydrote) {
         this.carbohydrote = carbohydrote;
     }
+
 }
