@@ -110,4 +110,12 @@ public class MealServiceImpl implements MealService {
 
     }
 
+    @Override
+    public MealDTO findOneMealByName (String name) {
+
+        return mealMapper.toMealDTO(mealRepository.findOneByName(name));
+
+
+    }
+
 }

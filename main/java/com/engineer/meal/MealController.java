@@ -21,4 +21,10 @@ public class MealController {
     List<MealDTO> calculateMeal(@RequestBody DataMeal dataMeal, @PathVariable String name) {
         return  mealService.calculateMeal(dataMeal,name);
     }
+
+    @GetMapping("/{name}")
+    public MealDTO findOneMealByName (@PathVariable String name) {
+        return mealService.findOneMealByName(name);
+    }
+
 }

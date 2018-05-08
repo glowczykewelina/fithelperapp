@@ -7,4 +7,5 @@ import java.util.List;
 public interface MealService {
 
     List<MealDTO> calculateMeal (DataMeal dataMeal, String name);
+    MealDTO findOneMealByName (String name);
 }
