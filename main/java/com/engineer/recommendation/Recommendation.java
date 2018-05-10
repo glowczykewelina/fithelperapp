@@ -1,6 +1,7 @@
 package com.engineer.recommendation;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Recommendation {
@@ -30,6 +31,9 @@ public class Recommendation {
 
     @Column
     private int carbohydrote;
+
+    //@Column
+    //private int matchPercentage;
 
     public String getNameMeal() {
         return nameMeal;
@@ -85,5 +89,25 @@ public class Recommendation {
 
     public void setCarbohydrote(int carbohydrote) {
         this.carbohydrote = carbohydrote;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Recommendation that = (Recommendation) o;
+        return weight == that.weight &&
+                kcal == that.kcal &&
+                protein == that.protein &&
+                fat == that.fat &&
+                carbohydrote == that.carbohydrote &&
+                Objects.equals(nameMeal, that.nameMeal) &&
+                Objects.equals(typeMeal, that.typeMeal);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(nameMeal, weight, typeMeal, kcal, protein, fat, carbohydrote);
     }
 }
