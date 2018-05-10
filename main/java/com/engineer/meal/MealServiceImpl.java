@@ -78,12 +78,12 @@ public class MealServiceImpl implements MealService {
                 meal.setMeal_fat((int) (userFat*0.25));
             }
         }else if (mealNumber==5) {
-            if (typeMeal.equals("sniadanie")){
+            if (typeMeal.equals("śniadanie")){
                 meal.setMeal_cal((int) (userCal*0.30));
                 meal.setMeal_protein((int) (userProtein*0.30));
                 meal.setMeal_carbo((int) (userCarbo*0.30));
                 meal.setMeal_fat((int) (userFat*0.30));
-            }else if (typeMeal.equals("drugie sniadanie")){
+            }else if (typeMeal.equals("drugie śniadanie")){
                 meal.setMeal_cal((int) (userCal*0.1));
                 meal.setMeal_protein((int) (userProtein*0.1));
                 meal.setMeal_carbo((int) (userCarbo*0.1));

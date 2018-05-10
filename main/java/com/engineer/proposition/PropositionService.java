@@ -10,5 +10,6 @@ public interface PropositionService {
     PropositionDTO addProposition(PropositionDTO propositionDTO);
 
     List<PropositionDTO> findAllPropositionByTypeMeal(String name);
+    List<PropositionDTO> findAllPropositionByIngredient(String ingredient);
 
 }

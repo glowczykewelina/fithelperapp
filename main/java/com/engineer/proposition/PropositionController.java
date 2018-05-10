@@ -28,4 +28,9 @@ public class PropositionController {
     public List<PropositionDTO> findAllPropositionByTypeMeal(@RequestParam String name){
         return propositionService.findAllPropositionByTypeMeal(name);
     }
+
+    @GetMapping
+    public List<PropositionDTO> findAllPropositionByIngredient(@RequestParam String ingredient) {
+        return propositionService.findAllPropositionByIngredient(ingredient);
+    }
 }

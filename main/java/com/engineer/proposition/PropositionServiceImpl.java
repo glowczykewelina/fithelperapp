@@ -1,5 +1,7 @@
 package com.engineer.proposition;
 
+import com.engineer.ingredient.Ingredient;
+import com.engineer.ingredient.IngredientRepository;
 import com.engineer.meal.Meal;
 import com.engineer.meal.MealDTO;
 import com.engineer.meal.MealRepository;
@@ -15,11 +17,13 @@ public class PropositionServiceImpl implements PropositionService {
     private PropositionRepository propositionRepository;
     private PropositionMapper propositionMapper;
     private MealRepository mealRepository;
+    private IngredientRepository ingredientRepository;
 
-    public PropositionServiceImpl(PropositionRepository propositionRepository, PropositionMapper propositionMapper, MealRepository mealRepository) {
+    public PropositionServiceImpl(PropositionRepository propositionRepository, PropositionMapper propositionMapper, MealRepository mealRepository, IngredientRepository ingredientRepository) {
         this.propositionRepository = propositionRepository;
         this.propositionMapper = propositionMapper;
         this.mealRepository = mealRepository;
+        this.ingredientRepository = ingredientRepository;
     }
 
     @Override
@@ -41,6 +45,21 @@ public class PropositionServiceImpl implements PropositionService {
         Meal meal = mealRepository.findOneByName(name);
         String userType = meal.getTypeMeal();
         return propositionMapper.toPropositionDTO(propositionRepository.findAllByTypeMeal(userType));
+    }
+
+    @Override
+    public List<PropositionDTO> findAllPropositionByIngredient(String ingredient) {
+        List<Ingredient> ingredient1 = ingredientRepository.findAllByIngredient(ingredient);
+        List<Proposition> newProposition = new ArrayList<>();
+        for (int i=0; i<ingredient1.size(); i++){
+            Ingredient IngredWithIngredient = ingredient1.get(i);
+            Proposition propositionWithIngredient = IngredWithIngredient.getProposition();
+            String nameMealIngred = propositionWithIngredient.getNameMeal();
+
+            newProposition = propositionRepository.findAllByNameMeal(nameMealIngred);
+        }
+        return propositionMapper.toPropositionDTO(newProposition);
+
 
     }
 }

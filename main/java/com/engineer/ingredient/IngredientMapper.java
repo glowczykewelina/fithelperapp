@@ -11,7 +11,8 @@ import java.util.List;
 public interface IngredientMapper {
 
     @Mappings({
-            @Mapping(source = "proposition.nameMeal",target = "propositionName")
+            @Mapping(source = "proposition.nameMeal",target = "propositionName"),
+            @Mapping(source = "proposition.typeMeal",target = "propositionType")
     })
 
     IngredientDTO toIngredientDTO (Ingredient ingredient);

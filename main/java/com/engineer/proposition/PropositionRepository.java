@@ -8,5 +8,6 @@ import java.util.List;
 public interface PropositionRepository extends JpaRepository<Proposition,Long>{
 
     List<Proposition> findAllByTypeMeal(String typeMeal);
+    List<Proposition> findAllByNameMeal(String nameMeal);
 
 }

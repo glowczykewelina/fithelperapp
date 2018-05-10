@@ -6,6 +6,8 @@ public class IngredientDTO {
 
     private String propositionName;
 
+    private String propositionType;
+
     public String getIngredient() {
         return ingredient;
     }
@@ -20,5 +22,13 @@ public class IngredientDTO {
 
     public void setPropositionName(String propositionName) {
         this.propositionName = propositionName;
+    }
+
+    public String getPropositionType() {
+        return propositionType;
+    }
+
+    public void setPropositionType(String propositionType) {
+        this.propositionType = propositionType;
     }
 }
