@@ -48,16 +48,31 @@ public class PropositionServiceImpl implements PropositionService {
     }
 
     @Override
-    public List<PropositionDTO> findAllPropositionByIngredient(String ingredient) {
+    public List<PropositionDTO> findAllPropositionByIngredient(String ingredient, String typeMeal) {
+
         List<Ingredient> ingredient1 = ingredientRepository.findAllByIngredient(ingredient);
+
+        for (int i=0; i<ingredient1.size(); i++) {
+            Ingredient IngredWithIngredient = ingredient1.get(i);
+            Proposition proposition =IngredWithIngredient.getProposition();
+            if (!proposition.getTypeMeal().equals(typeMeal)) {
+                ingredient1.remove(i);
+            }
+        }
+
         List<Proposition> newProposition = new ArrayList<>();
+        System.out.println(ingredient1.size());
         for (int i=0; i<ingredient1.size(); i++){
             Ingredient IngredWithIngredient = ingredient1.get(i);
             Proposition propositionWithIngredient = IngredWithIngredient.getProposition();
             String nameMealIngred = propositionWithIngredient.getNameMeal();
-
-            newProposition = propositionRepository.findAllByNameMeal(nameMealIngred);
+            Proposition newPropo = new Proposition();
+            newPropo = propositionRepository.findOneByNameMealAndTypeMeal(nameMealIngred,typeMeal);
+            List<Proposition> allPropo = new ArrayList<>();
+            allPropo.add(newPropo);
+            newProposition.addAll(allPropo);
         }
+
         return propositionMapper.toPropositionDTO(newProposition);
 
 

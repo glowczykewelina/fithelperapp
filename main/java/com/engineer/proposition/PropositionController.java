@@ -30,7 +30,7 @@ public class PropositionController {
     }
 
     @GetMapping
-    public List<PropositionDTO> findAllPropositionByIngredient(@RequestParam String ingredient) {
-        return propositionService.findAllPropositionByIngredient(ingredient);
+    public List<PropositionDTO> findAllPropositionByIngredient(@RequestParam String ingredient, @RequestParam String typeMeal) {
+        return propositionService.findAllPropositionByIngredient(ingredient,typeMeal);
     }
 }

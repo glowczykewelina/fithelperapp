@@ -4,6 +4,7 @@ import com.engineer.ingredient.Ingredient;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Proposition {
@@ -99,5 +100,26 @@ public class Proposition {
 
     public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Proposition that = (Proposition) o;
+        return weight == that.weight &&
+                kcal == that.kcal &&
+                protein == that.protein &&
+                fat == that.fat &&
+                carbohydrote == that.carbohydrote &&
+                Objects.equals(nameMeal, that.nameMeal) &&
+                Objects.equals(typeMeal, that.typeMeal) &&
+                Objects.equals(ingredients, that.ingredients);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(nameMeal, weight, typeMeal, kcal, protein, fat, carbohydrote, ingredients);
     }
 }
