@@ -32,8 +32,8 @@ public class Recommendation {
     @Column
     private int carbohydrote;
 
-    //@Column
-    //private int matchPercentage;
+    @Column
+    private int matchPercentage;
 
     public String getNameMeal() {
         return nameMeal;
@@ -91,6 +91,15 @@ public class Recommendation {
         this.carbohydrote = carbohydrote;
     }
 
+    public int getMatchPercentage() {
+        return matchPercentage;
+    }
+
+    public void setMatchPercentage(int matchPercentage) {
+        this.matchPercentage = matchPercentage;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -101,6 +110,7 @@ public class Recommendation {
                 protein == that.protein &&
                 fat == that.fat &&
                 carbohydrote == that.carbohydrote &&
+                matchPercentage == that.matchPercentage &&
                 Objects.equals(nameMeal, that.nameMeal) &&
                 Objects.equals(typeMeal, that.typeMeal);
     }
@@ -108,6 +118,6 @@ public class Recommendation {
     @Override
     public int hashCode() {
 
-        return Objects.hash(nameMeal, weight, typeMeal, kcal, protein, fat, carbohydrote);
+        return Objects.hash(nameMeal, weight, typeMeal, kcal, protein, fat, carbohydrote, matchPercentage);
     }
 }
