@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href ="https://bootswatch.com/4/minty/bootstrap.min.css" />
+    <script src="app/nutrition/nutrition.css"></script>
+
+</head>
+
+<div class="col-sm-6" style="margin-left: auto; margin-right: auto;">
+
+    <h2>Cześć !</h2>
+    <p>Aby móc pomóc Ci w prowadzeniu zdrowego trybu życia, musimy dowiedzieć się trochę o Tobie !</p><br>
+    <p>Uzupełnij poniższy formularz, a My dostarczymy Ci twoje dzienne zapotrzebowanie na kalorie, białko, tłuszcze i węglowodany,dzięki którym możliwe będzie jak najlepsze dostosowanie posiłku do Twoich potrzeb</p><br><br>
+</div>
+
+    <div class="col-sm-6" style="margin-left: auto; margin-right: auto;">
+        <div class="data-form" ng-show="!nutrition">
+            <form ng-submit="generateNutrition(data)" ng-controller="NutritionCtrl" method="post">
+                <div class="form-group">
+                    <label class="col-form-label" >Podaj Swoje imię</label><br>
+                    <input type="text" class="form-control" placeholder="Imię" id="sel1" ng-model="data.name">
+                </div><br>
+
+                <fieldset class="form-group">
+                    <legend>Podaj płeć</legend>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="Kobieta" checked="" ng-model="data.gender">
+                            Kobieta
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="Mezczyzna" ng-model="data.gender">
+                            Mezczyzna
+                        </label>
+                    </div>
+                </fieldset><br>
+
+                <div class="form-group">
+                    <label class="col-form-label" >Podaj Swój wiek</label><br>
+                    <input type="text" class="form-control" placeholder="Wiek" id="sel3" ng-model="data.age">
+                </div><br>
+
+                <div class="form-group">
+                    <label class="col-form-label" >Podaj Swoją wagę</label><br>
+                    <input type="text" class="form-control" placeholder="Waga" id="sel4" ng-model="data.weight">
+                </div><br>
+
+                <div class="form-group">
+                    <label>Określ Swoją aktywność fizyczną</label><br>
+                    <select class="form-control" id="sel5" ng-model="data.acitivity">
+                        <option value="znikoma">Znikoma </option>
+                        <option value="niska">Niska</option>
+                        <option value="srednia">Srednia</option>
+                        <option value="wysoka">Wysoka</option>
+                        <option value="bardzo wysoka">Bardzo wysoka</option>
+                    </select>
+                </div><br>
+
+                <div class="col-sm-3" style="margin-left: auto; margin-right: auto;" ng-click = "generateNutrition(data)">
+                    <a class="btn btn-primary btn-lg" >Wyślij</a><br><br><br>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</html>
