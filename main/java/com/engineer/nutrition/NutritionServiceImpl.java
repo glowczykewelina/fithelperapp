@@ -18,9 +18,8 @@ public class NutritionServiceImpl implements NutritionService {
     }
 
     @Override
-    public List<NutritionDTO> proposeNutrition(Data data) {
+    public NutritionDTO proposeNutrition(Data data) {
 
-        List<Nutrition> nutri = new ArrayList<Nutrition>();
         Nutrition nutrition = new Nutrition();
 
         //get in-data from user
@@ -101,9 +100,7 @@ public class NutritionServiceImpl implements NutritionService {
         protein = (int) ((calory * 0.12) / 4);
         nutrition.setProtein(protein);
 
-
-        nutri.add(nutrition);
-        return nutritionMapper.toNutritionDTO(nutritionRepository.save(nutri));
+        return nutritionMapper.toNutritionDTO(nutritionRepository.save(nutrition));
     }
         @Override
         public NutritionDTO findOneNutrition(String name) {

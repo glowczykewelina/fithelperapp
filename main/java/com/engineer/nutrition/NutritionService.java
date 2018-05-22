@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface NutritionService {
 
-    List<NutritionDTO> proposeNutrition (Data data);
+    NutritionDTO proposeNutrition (Data data);
 
     NutritionDTO findOneNutrition(String name);
 }
