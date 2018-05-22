@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-
+@RequestMapping(value="api/nutrition")
 public class NutritionController {
 
     private NutritionService nutritionService;
@@ -17,13 +17,13 @@ public class NutritionController {
         this.nutritionService = nutritionService;
     }
 
-    @RequestMapping(value = "/nutrition", method = {RequestMethod.POST,RequestMethod.GET})
+    @RequestMapping( method = RequestMethod.POST)
     @ResponseBody
     NutritionDTO proposeNutrition(@RequestBody Data data) {
         return nutritionService.proposeNutrition(data);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/nutrition/{name}")
+    @PostMapping("/{name}")
     public NutritionDTO findOneNutrition (@PathVariable String name) {
         return nutritionService.findOneNutrition(name);
     }

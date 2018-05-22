@@ -16,7 +16,7 @@ app.config(function($routeSegmentProvider, $routeProvider, $locationProvider) {
 							})
 
 			$routeSegmentProvider
-			.when('/nutrition', 'nutrition')
+			.when('/api/nutrition', 'api/nutrition')
 					.segment('nutrition', {
 								templateUrl : 'app/nutrition/nutrition.html',
 								controller : 'NutritionCtrl'

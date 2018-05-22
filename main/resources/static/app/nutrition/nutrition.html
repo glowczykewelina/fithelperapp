@@ -67,5 +67,19 @@
         </div>
     </div>
 
+<div class="col-sm-8" style="margin-left: auto; margin-right: auto;">
+    <br>
+    <h2> Twoje dzienne zapotrzebowanie na kalorie i składniki odżywcze wynosi: </h2>
+
+    <ul>
+        <li ng-repeat="item in nutrition">
+            <h3> Kalorie: {{nutrition.calory}} [kcal]  </h3>
+            <h3> Białko: {{nutrition.protein}} [g] </h3>
+            <h3> Tłuszcze: {{nutrition.fat}} [g] </h3>
+            <h3> Węglowodany: {{nutrition.carbohydrote}} [g] </h3>
+        </li>
+    </ul>
+</div>
+
 
 </html>
