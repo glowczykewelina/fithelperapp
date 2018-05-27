@@ -6,5 +6,6 @@ public interface IngredientService {
 
     IngredientDTO addIngredient(String ingredient, Long propositionId);
     List<IngredientDTO> findAllPropositionByIngredient(String ingredient);
+    void deleteIngredient(Long ingredientId);
 
 }

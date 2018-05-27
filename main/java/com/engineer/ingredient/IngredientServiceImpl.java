@@ -35,4 +35,9 @@ public class IngredientServiceImpl implements IngredientService{
     public List<IngredientDTO> findAllPropositionByIngredient(String ingredient) {
         return ingredientMapper.toIngredientDTO(ingredientRepository.findAllByIngredient(ingredient));
     }
+
+    @Override
+    public void deleteIngredient (Long ingredientId) {
+        ingredientRepository.delete(ingredientId);
+    }
 }

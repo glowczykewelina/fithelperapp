@@ -11,6 +11,7 @@ import com.engineer.proposition.PropositionService;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static java.lang.Math.abs;
 
@@ -36,13 +37,14 @@ public class RecommendationServiceImpl implements RecommendationService {
         List<Recommendation> recommendationList = new ArrayList<>();
         String userName = name;
 
+
         Meal meal = mealRepository.findOneByName(userName);
         int userKcal = meal.getMeal_cal();
         int userProtein = meal.getMeal_protein();
         int userFat = meal.getMeal_fat();
         int userCarbo = meal.getMeal_carbo();
         String userType = meal.getTypeMeal();
-
+        System.out.println(userType);
         List<Proposition> propositions = propositionRepository.findAllByTypeMeal(userType);
         int[] remainderKcal = new int[propositions.size()];
         int[] remainderProtein = new int[propositions.size()];
@@ -64,7 +66,13 @@ public class RecommendationServiceImpl implements RecommendationService {
             remainderCarbo[i] = abs(userCarbo-propoCarbo);
             remainderNutri[i] = remainderKcal[i] + remainderCarbo[i] + remainderFat[i]+remainderProtein[i];
 
-            int condition = 100;
+            int condition = 0;
+            int addSum = 0;
+            for (int j = 0; j < remainderNutri.length;j++){
+                addSum +=remainderNutri[j];
+                condition = addSum/remainderNutri.length;
+            }
+            System.out.println(condition);
             int firstOptionNutri =0;
             if (remainderNutri[i]<condition){
                 firstOptionNutri = remainderNutri[i];
@@ -140,63 +148,78 @@ public class RecommendationServiceImpl implements RecommendationService {
                     Proposition recommWithIngred1 = recommendedWithIngredient1.get(i);
                     Proposition recommWithIngred2 = recommendedWithIngredient2.get(j);
 
-                    for (int k = 0; k < sizeWithNutri; k++) {
+                    if (sizeWithNutri>0) {
+                        for (int k = 0; k < sizeWithNutri; k++) {
 
-                        Proposition recommWithNutri = recomendationWithNutri.get(k);
+                            Proposition recommWithNutri = recomendationWithNutri.get(k);
 
-                        if (recommWithIngred2.equals(recommWithIngred1)) {
-                            if (recommWithNutri.equals(recommWithIngred2)) {
-                                Recommendation recommendations1 = new Recommendation();
-                                recommendations1.setNameMeal(recommWithNutri.getNameMeal());
-                                recommendations1.setMatchPercentage(100);
-                                recommendations1.setTypeMeal(recommWithNutri.getTypeMeal());
-                                recommendations1.setCarbohydrote(recommWithNutri.getCarbohydrote());
-                                recommendations1.setFat(recommWithNutri.getFat());
-                                recommendations1.setProtein(recommWithNutri.getProtein());
-                                recommendations1.setKcal(recommWithNutri.getKcal());
-                                recommendations1.setWeight(recommWithNutri.getWeight());
-                                recommendationList.add(recommendations1);
-                                System.out.println("a");
+                            if (recommWithIngred2.equals(recommWithIngred1)) {
+                                if (recommWithNutri.equals(recommWithIngred2)) {
+                                    Recommendation recommendations1 = new Recommendation();
+                                    recommendations1.setNameMeal(recommWithNutri.getNameMeal());
+                                    recommendations1.setMatchPercentage(100);
+                                    recommendations1.setTypeMeal(recommWithNutri.getTypeMeal());
+                                    recommendations1.setCarbohydrote(recommWithNutri.getCarbohydrote());
+                                    recommendations1.setFat(recommWithNutri.getFat());
+                                    recommendations1.setProtein(recommWithNutri.getProtein());
+                                    recommendations1.setKcal(recommWithNutri.getKcal());
+                                    recommendations1.setWeight(recommWithNutri.getWeight());
+                                    recommendationList.add(recommendations1);
+                                    System.out.println("a");
+                                }
+                            } else {
+                                if (recommWithNutri.equals(recommWithIngred1)){
+                                    Recommendation recommendations1 = new Recommendation();
+                                    recommendations1.setNameMeal(recommWithNutri.getNameMeal());
+                                    recommendations1.setMatchPercentage(70);
+                                    recommendations1.setTypeMeal(recommWithNutri.getTypeMeal());
+                                    recommendations1.setCarbohydrote(recommWithNutri.getCarbohydrote());
+                                    recommendations1.setFat(recommWithNutri.getFat());
+                                    recommendations1.setProtein(recommWithNutri.getProtein());
+                                    recommendations1.setKcal(recommWithNutri.getKcal());
+                                    recommendations1.setWeight(recommWithNutri.getWeight());
+                                    recommendationList.add(recommendations1);
+                                    System.out.println("c");
+                                } else if (recommWithNutri.equals(recommWithIngred2)) {
+                                    Recommendation recommendations1 = new Recommendation();
+                                    recommendations1.setNameMeal(recommWithNutri.getNameMeal());
+                                    recommendations1.setMatchPercentage(70);
+                                    recommendations1.setTypeMeal(recommWithNutri.getTypeMeal());
+                                    recommendations1.setCarbohydrote(recommWithNutri.getCarbohydrote());
+                                    recommendations1.setFat(recommWithNutri.getFat());
+                                    recommendations1.setProtein(recommWithNutri.getProtein());
+                                    recommendations1.setKcal(recommWithNutri.getKcal());
+                                    recommendations1.setWeight(recommWithNutri.getWeight());
+                                    recommendationList.add(recommendations1);
+                                    System.out.println("d");
+                                } else if ((!recommWithNutri.equals(recommWithIngred2))&&(!recommWithNutri.equals(recommWithIngred1))){
+                                    Recommendation recommendations1 = new Recommendation();
+                                    recommendations1.setNameMeal(recommWithNutri.getNameMeal());
+                                    recommendations1.setMatchPercentage(40);
+                                    recommendations1.setTypeMeal(recommWithNutri.getTypeMeal());
+                                    recommendations1.setCarbohydrote(recommWithNutri.getCarbohydrote());
+                                    recommendations1.setFat(recommWithNutri.getFat());
+                                    recommendations1.setProtein(recommWithNutri.getProtein());
+                                    recommendations1.setKcal(recommWithNutri.getKcal());
+                                    recommendations1.setWeight(recommWithNutri.getWeight());
+                                    recommendationList.add(recommendations1);
+                                    System.out.println("c");
+                                }
                             }
-                        } else {
-                            if (recommWithNutri.equals(recommWithIngred1)){
-                                Recommendation recommendations1 = new Recommendation();
-                                recommendations1.setNameMeal(recommWithNutri.getNameMeal());
-                                recommendations1.setMatchPercentage(70);
-                                recommendations1.setTypeMeal(recommWithNutri.getTypeMeal());
-                                recommendations1.setCarbohydrote(recommWithNutri.getCarbohydrote());
-                                recommendations1.setFat(recommWithNutri.getFat());
-                                recommendations1.setProtein(recommWithNutri.getProtein());
-                                recommendations1.setKcal(recommWithNutri.getKcal());
-                                recommendations1.setWeight(recommWithNutri.getWeight());
-                                recommendationList.add(recommendations1);
-                                System.out.println("c");
-                            } else if (recommWithNutri.equals(recommWithIngred2)) {
-                                Recommendation recommendations1 = new Recommendation();
-                                recommendations1.setNameMeal(recommWithNutri.getNameMeal());
-                                recommendations1.setMatchPercentage(70);
-                                recommendations1.setTypeMeal(recommWithNutri.getTypeMeal());
-                                recommendations1.setCarbohydrote(recommWithNutri.getCarbohydrote());
-                                recommendations1.setFat(recommWithNutri.getFat());
-                                recommendations1.setProtein(recommWithNutri.getProtein());
-                                recommendations1.setKcal(recommWithNutri.getKcal());
-                                recommendations1.setWeight(recommWithNutri.getWeight());
-                                recommendationList.add(recommendations1);
-                                System.out.println("d");
-                            } else if ((!recommWithNutri.equals(recommWithIngred2))&&(!recommWithNutri.equals(recommWithIngred1))){
-                                Recommendation recommendations1 = new Recommendation();
-                                recommendations1.setNameMeal(recommWithNutri.getNameMeal());
-                                recommendations1.setMatchPercentage(40);
-                                recommendations1.setTypeMeal(recommWithNutri.getTypeMeal());
-                                recommendations1.setCarbohydrote(recommWithNutri.getCarbohydrote());
-                                recommendations1.setFat(recommWithNutri.getFat());
-                                recommendations1.setProtein(recommWithNutri.getProtein());
-                                recommendations1.setKcal(recommWithNutri.getKcal());
-                                recommendations1.setWeight(recommWithNutri.getWeight());
-                                recommendationList.add(recommendations1);
-                                System.out.println("c");
-                            }
-
+                        }
+                    } else if (sizeWithNutri==0) {
+                        if (recommWithIngred1.equals(recommWithIngred2)) {
+                            Recommendation recommendations1 = new Recommendation();
+                            recommendations1.setNameMeal(recommWithIngred2.getNameMeal());
+                            recommendations1.setMatchPercentage(60);
+                            recommendations1.setTypeMeal(recommWithIngred2.getTypeMeal());
+                            recommendations1.setCarbohydrote(recommWithIngred2.getCarbohydrote());
+                            recommendations1.setFat(recommWithIngred2.getFat());
+                            recommendations1.setProtein(recommWithIngred2.getProtein());
+                            recommendations1.setKcal(recommWithIngred2.getKcal());
+                            recommendations1.setWeight(recommWithIngred2.getWeight());
+                            recommendationList.add(recommendations1);
+                            System.out.println("hk");
                         }
                     }
                 }
@@ -293,66 +316,38 @@ public class RecommendationServiceImpl implements RecommendationService {
 
         }
 
+        java.util.List<Recommendation> uniqueRecommendation = recommendationList.stream()
+                .distinct()
+                .collect(Collectors.toList());
 
-        //int sizeNutri = recomendationWithNutri.size();
-        //int sizeIngred1 = recommendedWithIngredient1.size();
-        //System.out.println(sizeIngred1);
-        //int sizeIngred2 = recommendedWithIngredient2.size();
-        //System.out.println(sizeIngred2);
-        //for (int i =0; i< sizeNutri;i++) {
-        //    for (int j=0; j<sizeIngred1;j++) {
-        //        if (recomendationWithNutri.get(i).equals(recommendedWithIngredient1.get(j))) {
-        //            recommendedWithIngredient1.remove(j);
-        //            sizeIngred1=sizeIngred1-1;
-        //        }
-        //    }
-        //}
+        for (int i=0; i<uniqueRecommendation.size();i++) {
+            for (int j=i+1; j <uniqueRecommendation.size();j++) {
 
-        //for (int i =0; i< sizeNutri;i++) {
-        //    for (int j=0; j<sizeIngred2;j++) {
-        //        if (recomendationWithNutri.get(i).equals(recommendedWithIngredient2.get(j))) {
-        //            recommendedWithIngredient2.remove(j);
-        //            sizeIngred2=sizeIngred2-1;
-        //        }
-        //    }
-        //}
-
-        //recommendationList.addAll(recomendationWithNutri);
-        //recommendationList.addAll(recommendedWithIngredient1);
-        //recommendationList.addAll(recommendedWithIngredient2);
-
-       // for (int i=0; i<recommendationList.size(); i++) {
-        //    Recommendation recommendation = recommendationList.get(i);
-        //    if
-       // }
-
-
-       // List<Recommendation> theBestMeal = new ArrayList<>();
-        for (int i=0; i<recommendationList.size();i++) {
-            for (int j=i+1; j <recommendationList.size();j++) {
-
-                if (recommendationList.get(i).equals(recommendationList.get(j))) {
-                    recommendationList.remove(j);
-                    j--;
-                } else if (!recommendationList.get(i).equals(recommendationList.get(j))) {
-                    Recommendation recommendation1 = recommendationList.get(i);
-                    Recommendation recommendation2 = recommendationList.get(j);
+                if (!uniqueRecommendation.get(i).equals(uniqueRecommendation.get(j))) {
+                    Recommendation recommendation1 = uniqueRecommendation.get(i);
+                    Recommendation recommendation2 = uniqueRecommendation.get(j);
                     if (recommendation1.getNameMeal()==recommendation2.getNameMeal()) {
                         if (recommendation1.getMatchPercentage()>recommendation2.getMatchPercentage()) {
-                            recommendationList.remove(j) ;
+                            uniqueRecommendation.remove(j) ;
                             j--;
                         } else if (recommendation1.getMatchPercentage()<recommendation2.getMatchPercentage()) {
-                            recommendationList.remove(i);
+                            uniqueRecommendation.remove(i);
                             i--;
                         }
                     }
                 }
-
             }
         }
 
+        Collections.sort(uniqueRecommendation, new Comparator<Recommendation>() {
+            @Override
+            public int compare(Recommendation o1, Recommendation o2) {
+                return o2.getMatchPercentage()-o1.getMatchPercentage();
+            }
+        });
 
-        return recommendationRepository.save(recommendationList);
+
+        return recommendationRepository.save(uniqueRecommendation);
 
     }
 }

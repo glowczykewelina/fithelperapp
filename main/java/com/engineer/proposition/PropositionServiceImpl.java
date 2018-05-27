@@ -57,6 +57,7 @@ public class PropositionServiceImpl implements PropositionService {
             Proposition proposition =IngredWithIngredient.getProposition();
             if (!proposition.getTypeMeal().equals(typeMeal)) {
                 ingredient1.remove(i);
+                i--;
             }
         }
 
@@ -73,8 +74,15 @@ public class PropositionServiceImpl implements PropositionService {
             newProposition.addAll(allPropo);
         }
 
+
+
         return propositionMapper.toPropositionDTO(newProposition);
 
 
+    }
+
+    @Override
+    public void deleteProposition(Long propositionId) {
+        propositionRepository.delete(propositionId);
     }
 }

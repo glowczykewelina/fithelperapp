@@ -33,4 +33,9 @@ public class PropositionController {
     public List<PropositionDTO> findAllPropositionByIngredient(@RequestParam String ingredient, @RequestParam String typeMeal) {
         return propositionService.findAllPropositionByIngredient(ingredient,typeMeal);
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteProposition(@PathVariable Long id) {
+        propositionService.deleteProposition(id);
+    }
 }

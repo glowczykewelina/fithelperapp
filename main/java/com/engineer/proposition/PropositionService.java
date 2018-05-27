@@ -11,5 +11,6 @@ public interface PropositionService {
 
     List<PropositionDTO> findAllPropositionByTypeMeal(String name);
     List<PropositionDTO> findAllPropositionByIngredient(String ingredient,String typeMeal);
+    void deleteProposition(Long propositionId);
 
 }

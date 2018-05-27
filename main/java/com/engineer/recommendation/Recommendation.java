@@ -120,4 +120,5 @@ public class Recommendation {
 
         return Objects.hash(nameMeal, weight, typeMeal, kcal, protein, fat, carbohydrote, matchPercentage);
     }
+
 }

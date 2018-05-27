@@ -39,7 +39,7 @@ public class MealServiceImpl implements MealService {
         int userCarbo = nutrition.getCarbohydrote();
 
         if (mealNumber==3) {
-            if (typeMeal.equals("sniadanie")){
+            if (typeMeal.equals("śniadanie")){
                 meal.setMeal_cal((int) (userCal*0.35));
                 meal.setMeal_protein((int) (userProtein*0.35));
                 meal.setMeal_carbo((int) (userCarbo*0.35));
@@ -56,12 +56,12 @@ public class MealServiceImpl implements MealService {
                 meal.setMeal_fat((int) (userFat*0.25));
             }
         }else if (mealNumber==4) {
-            if (typeMeal.equals("sniadanie")){
+            if (typeMeal.equals("śniadanie")){
                 meal.setMeal_cal((int) (userCal*0.30));
                 meal.setMeal_protein((int) (userProtein*0.30));
                 meal.setMeal_carbo((int) (userCarbo*0.30));
                 meal.setMeal_fat((int) (userFat*0.30));
-            }else if (typeMeal.equals("drugie sniadanie")){
+            }else if (typeMeal.equals("drugie śniadanie")){
                 meal.setMeal_cal((int) (userCal*0.05));
                 meal.setMeal_protein((int) (userProtein*0.05));
                 meal.setMeal_carbo((int) (userCarbo*0.05));

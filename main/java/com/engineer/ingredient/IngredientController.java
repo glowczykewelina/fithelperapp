@@ -26,4 +26,7 @@ public class IngredientController {
     public List<IngredientDTO> findAllPropositionByIngredient(@RequestParam String ingredient) {
         return ingredientService.findAllPropositionByIngredient(ingredient);
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteIngredient (@PathVariable Long id) {ingredientService.deleteIngredient(id);}
 }
