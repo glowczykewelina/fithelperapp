@@ -1,6 +1,6 @@
-var home = angular.module('nutrition', []); 	// moduł strony startowej, dzieki ktoremu unika się konfliktów;
+var nutrition = angular.module('nutrition', []); 	// moduł strony startowej, dzieki ktoremu unika się konfliktów;
 
-home.controller('NutritionCtrl', ['$scope', '$http', function($scope){
+nutrition.controller('NutritionCtrl', ['$scope', '$http', function($scope, $http){
 
 	console.log("Nutrition CONTROLLER")		//elementy pomocnicze sprawdzające czy strona została poprawnie załadowana
 

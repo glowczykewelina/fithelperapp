@@ -1,6 +1,6 @@
-var home = angular.module('meal', []); 	// moduł strony startowej, dzieki ktoremu unika się konfliktów;
+var meal = angular.module('meal', []); 	// moduł strony startowej, dzieki ktoremu unika się konfliktów;
 
-home.controller('MealCtrl', ['$scope', '$http', function($scope){
+meal.controller('MealCtrl', ['$scope', '$http', function($scope,$http){
 
 	console.log("Meal CONTROLLER")		//elementy pomocnicze sprawdzające czy strona została poprawnie załadowana
 
